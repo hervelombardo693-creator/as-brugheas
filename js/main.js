@@ -14,7 +14,9 @@ const FIXTURES = [
     cat: "Seniors", sub: "Championnat · Journée 6",
     home: "USTB 2", away: "A.S. Brugheas",
     date: "2026-11-08T15:00:00+01:00",
-    place: "Stade municipal · 03500 Bransat"
+    place: "Stade municipal · 03500 Bransat",
+    // score final : score domicile, score extérieur, texte du badge
+    result: { home: 0, away: 12, label: "Victoire 12-0" }
   },
   {
     cat: "Féminines", sub: "Championnat · Journée 4",
@@ -36,7 +38,7 @@ const SEASON = [
   { img: "affiche-challenge-paul-baptiste", tag: "Challenge Paul Baptiste", date: "11 octobre", meta: "Gipcy A.S – A.S. Brugheas · 14h30 · Gipcy" },
   { img: "affiche-seniors-j4", tag: "Seniors · J4", date: "18 octobre", meta: "Mayotte FC 2 – A.S. Brugheas · Bellerive-sur-Allier", result: { type: "win", text: "Victoire 8-2" } },
   { img: "affiche-seniors-j5", tag: "Seniors · J5", date: "25 octobre", meta: "A.S. Brugheas – Abrest U.S 2 · 15h · Stade Marcel Epinat", result: { type: "draw", text: "Match nul" } },
-  { img: "affiche-seniors-j6", tag: "Seniors · J6", date: "8 novembre", meta: "USTB 2 – A.S. Brugheas · 15h · Bransat", result: { type: "next", text: "Ce week-end" } },
+  { img: "affiche-seniors-j6", tag: "Seniors · J6", date: "8 novembre", meta: "USTB 2 – A.S. Brugheas · 15h · Bransat", result: { type: "win", text: "Victoire 12-0" } },
   { img: "affiche-feminines-j4", tag: "Féminines · J4", date: "8 novembre", meta: "St-Germain-des-Fossés – A.S. Brugheas · 15h", result: { type: "next", text: "Ce week-end" } }
 ];
 
@@ -73,9 +75,11 @@ function buildFixtures() {
     <div class="fixture" data-i="${i}">
       <div class="fx-cat">${f.cat}<small>${f.sub}</small></div>
       <div class="fx-team home ${isAsb(f.home) ? "asb" : ""}">${f.home}</div>
-      <div class="fx-vs">VS</div>
+      ${f.result ? `<div class="fx-vs fx-final">${f.result.home}<i>-</i>${f.result.away}</div>` : `<div class="fx-vs">VS</div>`}
       <div class="fx-team ${isAsb(f.away) ? "asb" : ""}">${f.away}</div>
-      <div class="fx-info"><b>${label.charAt(0).toUpperCase() + label.slice(1)}</b>${f.place}<div class="fx-live" data-date="${f.date}"></div></div>
+      <div class="fx-info"><b>${label.charAt(0).toUpperCase() + label.slice(1)}</b>${f.place}${f.result
+        ? `<div><span class="fx-status win">${f.result.label}</span></div>`
+        : `<div class="fx-live" data-date="${f.date}"></div>`}</div>
     </div>`;
   }).join("");
   tickFixtures();
@@ -416,6 +420,17 @@ function init() {
   /* ---------- Matchs du week-end ---------- */
   gsap.from(".fixture", { y: 80, opacity: 0, rotateX: -30, transformPerspective: 900, duration: 1.2, stagger: .15, ease: "expo.out", scrollTrigger: { trigger: "#fixtureList", start: "top 85%" } });
   gsap.from(".fx-vs", { scale: 0, rotate: -360, duration: 1.4, stagger: .15, ease: "back.out(1.8)", scrollTrigger: { trigger: "#fixtureList", start: "top 85%" } });
+
+  /* ---------- Dernier match (12-0) ---------- */
+  gsap.timeline({ scrollTrigger: { trigger: ".lastmatch", start: "top 75%" } })
+    .fromTo(".lm-photo", { clipPath: "inset(0% 50% 0% 50%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 1.6, ease: "expo.inOut" })
+    .fromTo(".lm-photo img", { scale: 1.4 }, { scale: 1, duration: 2, ease: "expo.out" }, "<.2")
+    .fromTo(".lm-stamp", { scale: 3, rotate: -40, autoAlpha: 0 }, { scale: 1, rotate: -12, autoAlpha: 1, duration: .7, ease: "back.out(2.2)" }, "-=1.2");
+  gsap.to(".lm-photo img", { yPercent: 12, ease: "none", scrollTrigger: { trigger: ".lastmatch", start: "top bottom", end: "bottom top", scrub: true } });
+  gsap.timeline({ scrollTrigger: { trigger: ".lm-board", start: "top 85%" } })
+    .from(".lm-team", { opacity: 0, y: 40, duration: 1, stagger: .15, ease: "expo.out" })
+    .from(".lm-score", { scale: .5, opacity: 0, duration: 1.4, ease: "expo.out" }, "<")
+    .from(".lm-scorers .chip", { y: 30, opacity: 0, scale: .6, rotate: () => gsap.utils.random(-15, 15), duration: .8, stagger: .08, ease: "back.out(2)" }, "-=.6");
 
   /* ---------- Saison : scroll horizontal épinglé ---------- */
   const track = $("#seasonTrack");
