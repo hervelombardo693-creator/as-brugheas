@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A.S. Brugheas — Plus qu'un club, une famille</title>
+  <meta name="description" content="A.S. Brugheas, club de football amateur de Brugheas (03700). Seniors masculins, féminines et école de foot au Stade Marcel Epinat. Jaune et noir !">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta property="og:title" content="A.S. Brugheas — Plus qu'un club, une famille">
+  <meta property="og:description" content="Club de football amateur de Brugheas : seniors, féminines et école de foot.">
+  <meta property="og:image" content="assets/img/seniors-equipe.jpg">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Kaushan+Script&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ============ PRELOADER ============ -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="pre-inner">
+      <svg class="pre-flower" viewBox="-100 -100 200 200">
+        <g class="petals"></g>
+        <circle class="pre-ring" r="92" />
+      </svg>
+      <div class="pre-count"><span id="preCount">0</span><small>%</small></div>
+      <div class="pre-title">A.S.&nbsp;BRUGHEAS</div>
+    </div>
+    <div class="pre-curtain c1"></div>
+    <div class="pre-curtain c2"></div>
+  </div>
+
+  <!-- ============ CURSOR / PROGRESS / GRAIN ============ -->
+  <div class="cursor" id="cursor"><span class="cursor-label">Voir</span></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="progress" id="progress"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav" id="nav">
+    <a href="#top" class="nav-logo" aria-label="Accueil A.S. Brugheas">
+      <img src="assets/img/logo.png" alt="" width="48" height="48">
+      <span>A.S. Brugheas</span>
+    </a>
+    <nav class="nav-links" aria-label="Navigation principale">
+      <a href="#club" data-hover>Le club</a>
+      <a href="#equipes" data-hover>Équipes</a>
+      <a href="#saison" data-hover>Saison</a>
+      <a href="#ecole" data-hover>École de foot</a>
+      <a href="#vie" data-hover>Vie du club</a>
+      <a href="#contact" data-hover>Contact</a>
+    </nav>
+    <a href="#rejoindre" class="btn btn-gold magnetic nav-cta"><span>Nous rejoindre</span></a>
+    <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false"><span></span><span></span></button>
+  </header>
+
+  <div class="menu" id="menu" aria-hidden="true">
+    <div class="menu-bg"></div>
+    <nav class="menu-links">
+      <a href="#club"><i>01</i>Le club</a>
+      <a href="#equipes"><i>02</i>Équipes</a>
+      <a href="#saison"><i>03</i>Saison</a>
+      <a href="#ecole"><i>04</i>École de foot</a>
+      <a href="#vie"><i>05</i>Vie du club</a>
+      <a href="#contact"><i>06</i>Contact</a>
+    </nav>
+    <p class="menu-foot">Stade Marcel Epinat · 03700 Brugheas</p>
+  </div>
+
+  <main id="top">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="hero">
+      <div class="hero-media">
+        <img src="assets/img/seniors-equipe.jpg" alt="L'équipe senior de l'A.S. Brugheas en maillot noir et or" class="hero-img">
+      </div>
+      <div class="hero-shade"></div>
+      <canvas class="particles" id="heroParticles"></canvas>
+      <div class="sash sash-hero" aria-hidden="true"></div>
+
+      <div class="hero-content">
+        <p class="hero-kicker"><span class="dot"></span> Club de football amateur · Brugheas (03)</p>
+        <h1 class="hero-title">
+          <span class="ht-small split-chars">A.S.</span>
+          <span class="ht-big split-chars">BRUGHEAS</span>
+        </h1>
+        <p class="hero-script">Plus qu'un club, une famille !</p>
+        <div class="hero-actions">
+          <a href="#saison" class="btn btn-gold magnetic"><span>La saison 2026/27</span></a>
+          <a href="#equipes" class="btn btn-ghost magnetic"><span>Nos équipes</span></a>
+        </div>
+      </div>
+
+      <div class="hero-badge" aria-hidden="true">
+        <svg viewBox="0 0 200 200">
+          <defs><path id="circlePath" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"/></defs>
+          <text><textPath href="#circlePath">ALLEZ L'ASB ★ JAUNE &amp; NOIR ★ ALLEZ L'ASB ★ JAUNE &amp; NOIR ★ </textPath></text>
+        </svg>
+        <img src="assets/img/logo.png" alt="">
+      </div>
+
+      <a href="#club" class="scroll-hint" aria-label="Défiler vers le bas">
+        <span>Scroll</span><i></i>
+      </a>
+    </section>
+
+    <!-- ============ MARQUEES ============ -->
+    <section class="marquees" aria-label="Devises du club">
+      <div class="marquee m-gold" data-dir="-1">
+        <div class="marquee-track">
+          <span>Ensemble, on ne lâche rien</span><b>★</b><span>Tous derrière nos jaunes et noirs</span><b>★</b><span>Allez l'A.S. Brugheas</span><b>★</b>
+          <span>Ensemble, on ne lâche rien</span><b>★</b><span>Tous derrière nos jaunes et noirs</span><b>★</b><span>Allez l'A.S. Brugheas</span><b>★</b>
+        </div>
+      </div>
+      <div class="marquee m-dark" data-dir="1">
+        <div class="marquee-track">
+          <span>On gagne ensemble</span><b>●</b><span>On perd ensemble</span><b>●</b><span>Le foot, c'est notre passion</span><b>●</b>
+          <span>On gagne ensemble</span><b>●</b><span>On perd ensemble</span><b>●</b><span>Le foot, c'est notre passion</span><b>●</b>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ LE CLUB ============ -->
+    <section class="club" id="club">
+      <div class="container">
+        <p class="eyebrow"><span>01</span> Le club</p>
+        <p class="club-manifesto fill-text">
+          Au cœur de Brugheas, l'A.S. fait vibrer le Stade Marcel Epinat chaque week-end. Des seniors aux féminines jusqu'aux plus jeunes de l'école de foot, ici on porte le jaune et le noir avec fierté. On gagne ensemble, on perd ensemble — et on se retrouve toujours à la buvette.
+        </p>
+
+        <div class="stats">
+          <div class="stat">
+            <div class="stat-num"><span class="count" data-to="1">0</span><sup>re</sup></div>
+            <div class="stat-label">place des seniors en D5,<br>seule équipe invaincue après 5 journées</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num"><span class="count" data-to="8">0</span></div>
+            <div class="stat-label">buts marqués à Bellerive<br>(victoire 8-2, journée 4)</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num"><span class="count" data-to="3">0</span></div>
+            <div class="stat-label">équipes : seniors masculins,<br>féminines, école de foot</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num"><span class="count" data-to="338">0</span></div>
+            <div class="stat-label">supporters qui nous suivent<br>sur Facebook</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ÉQUIPES ============ -->
+    <section class="teams" id="equipes">
+      <div class="container">
+        <p class="eyebrow"><span>02</span> Nos équipes</p>
+        <h2 class="section-title split-words">Deux équipes, <em>un seul maillot</em></h2>
+      </div>
+
+      <div class="team-panels">
+        <article class="team-panel" data-cursor="Seniors">
+          <div class="tp-media"><img src="assets/img/seniors-equipe.jpg" alt="L'équipe senior masculine posant sur le terrain"></div>
+          <div class="tp-shade"></div>
+          <div class="tp-content">
+            <span class="tp-tag">Seniors masculins · D5</span>
+            <h3>Les <span class="gold">Seniors</span></h3>
+            <ul class="tp-facts">
+              <li><b>1ers</b> du championnat</li>
+              <li><b>Invaincus</b> après 5 journées</li>
+              <li><b>Stade</b> Marcel Epinat</li>
+            </ul>
+            <p>Un groupe soudé qui défend fièrement les couleurs de l'ASB, à domicile comme à l'extérieur. Objectif : tout donner sur le terrain !</p>
+          </div>
+          <span class="tp-index">01</span>
+        </article>
+
+        <article class="team-panel" data-cursor="Féminines">
+          <div class="tp-media"><img src="assets/img/feminines-equipe.jpg" alt="L'équipe féminine célébrant sur le terrain"></div>
+          <div class="tp-shade"></div>
+          <div class="tp-content">
+            <span class="tp-tag">Féminines · Championnat</span>
+            <h3>Les <span class="gold">Féminines</span></h3>
+            <ul class="tp-facts">
+              <li><b>Courage</b></li>
+              <li><b>Solidarité</b></li>
+              <li><b>Plaisir</b> sur le terrain</li>
+            </ul>
+            <p>Débutantes ou expérimentées, nos joueuses progressent ensemble, match après match. Le recrutement 2026/2027 est ouvert !</p>
+          </div>
+          <span class="tp-index">02</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ CE WEEK-END ============ -->
+    <section class="fixtures" id="matchs">
+      <div class="container">
+        <p class="eyebrow"><span>03</span> Ce week-end</p>
+        <h2 class="section-title split-words">Les prochains <em>rendez-vous</em></h2>
+        <div class="fixture-list" id="fixtureList"></div>
+      </div>
+    </section>
+
+    <!-- ============ SAISON (HORIZONTAL) ============ -->
+    <section class="season" id="saison">
+      <div class="season-pin">
+        <div class="season-head">
+          <p class="eyebrow"><span>04</span> Saison 2026/2027</p>
+          <h2 class="season-title">Le fil<br><em>de la saison</em></h2>
+          <p class="season-hint">Faites défiler <i>→</i></p>
+        </div>
+        <div class="season-track" id="seasonTrack">
+          <!-- cartes générées en JS -->
+        </div>
+        <div class="season-bar"><i id="seasonBar"></i></div>
+      </div>
+    </section>
+
+    <!-- ============ CARTON BELLERIVE ============ -->
+    <section class="score" id="score">
+      <div class="container">
+        <p class="eyebrow"><span>05</span> Le match référence</p>
+        <div class="score-board">
+          <div class="sb-team">Mayotte FC 2</div>
+          <div class="sb-nums">
+            <span class="sb-n count" data-to="2">0</span>
+            <span class="sb-sep">—</span>
+            <span class="sb-n gold count" data-to="8">0</span>
+          </div>
+          <div class="sb-team"><b>A.S. Brugheas</b></div>
+        </div>
+        <p class="score-sub">Journée 4 · Dimanche 18 octobre · Stade Boucle des Isles, Bellerive-sur-Allier</p>
+      </div>
+      <div class="goal-cards" id="goalCards">
+        <figure class="goal-card"><img src="assets/img/but-thomas.jpg" alt="Affiche : quadruplé de Thomas"><figcaption>Thomas · quadruplé</figcaption></figure>
+        <figure class="goal-card"><img src="assets/img/but-thibault.jpg" alt="Affiche : doublé de Thibault"><figcaption>Thibault · doublé</figcaption></figure>
+        <figure class="goal-card"><img src="assets/img/but-82e.jpg" alt="Affiche : but à la 82e minute"><figcaption>But à la 82e</figcaption></figure>
+        <figure class="goal-card"><img src="assets/img/but-andre.jpg" alt="Affiche : but d'André à la 5e minute"><figcaption>André · 5e minute</figcaption></figure>
+      </div>
+    </section>
+
+    <!-- ============ REJOINDRE / FÉMININES ============ -->
+    <section class="join" id="rejoindre">
+      <div class="join-blob" aria-hidden="true"></div>
+      <div class="container join-grid">
+        <div class="join-media reveal-img">
+          <img src="assets/img/feminines-vestiaire.jpg" alt="Les joueuses célèbrent dans le vestiaire">
+        </div>
+        <div class="join-text">
+          <p class="eyebrow"><span>06</span> Recrutement féminines</p>
+          <h2 class="section-title split-words">Rejoins-nous pour la <em>saison 2026/2027</em></h2>
+          <div class="join-pills">
+            <div class="pill"><b>Débutantes ou expérimentées</b><span>Peu importe ton niveau, ta motivation fait la différence.</span></div>
+            <div class="pill"><b>Un club convivial</b><span>On partage bien plus que des entraînements : des moments, des rires et une vraie équipe.</span></div>
+            <div class="pill"><b>L'amour du foot</b><span>Sur le terrain comme en dehors, on joue avec le cœur.</span></div>
+          </div>
+          <p class="join-script">Ensemble, plus fortes, avec le sourire !</p>
+          <div class="hero-actions">
+            <a href="https://www.facebook.com/profile.php?id=61561610493829" target="_blank" rel="noopener" class="btn btn-gold magnetic"><span>Viens essayer un entraînement</span></a>
+            <a href="mailto:asbrugheas@gmail.com" class="btn btn-ghost magnetic"><span>asbrugheas@gmail.com</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ÉCOLE DE FOOT ============ -->
+    <section class="school" id="ecole">
+      <svg class="ball" id="ball" viewBox="0 0 100 100" aria-hidden="true">
+        <circle cx="50" cy="50" r="47" fill="#f5efe3" stroke="#0a0a0a" stroke-width="3"/>
+        <polygon points="50,30 66,42 60,61 40,61 34,42" fill="#0a0a0a"/>
+        <path d="M50 30 L50 4 M66 42 L91 34 M60 61 L76 83 M40 61 L24 83 M34 42 L9 34" stroke="#0a0a0a" stroke-width="3"/>
+        <path d="M24 83 Q50 98 76 83 M9 34 Q4 60 24 83 M91 34 Q96 60 76 83 M9 34 Q22 8 50 4 M91 34 Q78 8 50 4" fill="none" stroke="#0a0a0a" stroke-width="2"/>
+      </svg>
+      <div class="container">
+        <p class="eyebrow dark"><span>07</span> École de foot</p>
+        <h2 class="school-title split-chars">Les petits champions</h2>
+        <div class="school-grid">
+          <div class="school-info">
+            <p class="school-lead">Initiation et découverte du football pour les enfants <b>nés de 2019 à 2022</b>. Viens t'amuser, découvrir le foot et partager de beaux moments !</p>
+            <ul class="school-list">
+              <li><span>Quand</span><b>Le samedi, de 10h à 11h</b></li>
+              <li><span>Où</span><b>Stade Marcel Epinat, Brugheas</b></li>
+              <li><span>Plateaux</span><b>U6 / U7 avec les clubs voisins</b></li>
+              <li><span>Inscriptions</span><b>Sur place ou sur Facebook</b></li>
+              <li><span>Responsable</span><b>Christophe Dugout · <a href="tel:+33783364821">07 83 36 48 21</a></b></li>
+            </ul>
+          </div>
+          <div class="school-photos">
+            <div class="sp sp1 reveal-img"><img src="assets/img/ecole-2.jpg" alt="Les enfants de l'école de foot à l'entraînement"></div>
+            <div class="sp sp2 reveal-img"><img src="assets/img/ecole-1.jpg" alt="Un jeune joueur frappe le ballon"></div>
+            <div class="sp sp3 reveal-img"><img src="assets/img/ecole-pique-nique.jpg" alt="Pique-nique de l'école de foot"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ VIE DU CLUB ============ -->
+    <section class="life" id="vie">
+      <div class="container">
+        <p class="eyebrow"><span>08</span> Vie du club</p>
+        <h2 class="section-title split-words">Bien plus que <em>90 minutes</em></h2>
+        <p class="life-lead">Halloween des jeunes, tournoi nocturne, troisièmes mi-temps dans les vestiaires, assemblée générale… À l'A.S. Brugheas, le plaisir de se retrouver fait aussi partie du jeu.</p>
+      </div>
+      <div class="gallery" id="gallery">
+        <div class="g-col" data-speed="-0.12">
+          <figure><img src="assets/img/halloween-groupe-1.jpg" alt="Halloween : les jeunes déguisés"><figcaption>Halloween à Brugheas</figcaption></figure>
+          <figure><img src="assets/img/seniors-vestiaire-1.jpg" alt="Les seniors célèbrent dans le vestiaire"><figcaption>Victoire au vestiaire</figcaption></figure>
+          <figure><img src="assets/img/tournoi-nuit-1.jpg" alt="Équipe au tournoi nocturne"><figcaption>Tournoi nocturne</figcaption></figure>
+          <figure><img src="assets/img/affiche-assemblee-generale.jpg" alt="Affiche de l'assemblée générale du 5 juillet 2026"><figcaption>Assemblée générale · 5 juillet 2026</figcaption></figure>
+        </div>
+        <div class="g-col" data-speed="0.1">
+          <figure><img src="assets/img/halloween-buffet.jpg" alt="Buffet d'Halloween"><figcaption>Le buffet d'Halloween</figcaption></figure>
+          <figure><img src="assets/img/tournoi-nuit-2.jpg" alt="Équipe en blanc au tournoi nocturne"><figcaption>Sous les projecteurs</figcaption></figure>
+          <figure><img src="assets/img/logo-octobre-rose.jpg" alt="Le logo du club en rose pour Octobre Rose"><figcaption>Octobre Rose</figcaption></figure>
+          <figure><img src="assets/img/seniors-vestiaire-2.jpg" alt="Joie dans le vestiaire"><figcaption>La famille ASB</figcaption></figure>
+        </div>
+        <div class="g-col" data-speed="-0.06">
+          <figure><img src="assets/img/halloween-groupe-2.jpg" alt="Photo de groupe d'Halloween"><figcaption>Nos plus jeunes recrues</figcaption></figure>
+          <figure><img src="assets/img/ecole-3.jpg" alt="Atelier de l'école de foot"><figcaption>École de foot</figcaption></figure>
+          <figure><img src="assets/img/tournoi-nuit-3.jpg" alt="Équipe au tournoi nocturne"><figcaption>Tournoi nocturne</figcaption></figure>
+          <figure><img src="assets/img/seniors-vestiaire-3.jpg" alt="Les seniors au vestiaire"><figcaption>3e mi-temps</figcaption></figure>
+        </div>
+        <div class="g-col" data-speed="0.14">
+          <figure><img src="assets/img/halloween-table.jpg" alt="Table décorée pour Halloween"><figcaption>Le repas des jeunes</figcaption></figure>
+          <figure><img src="assets/img/soiree-tournoi.jpg" alt="Soirée au stade"><figcaption>Soirée au stade</figcaption></figure>
+          <figure><img src="assets/img/ecole-2.jpg" alt="Les enfants et les éducateurs"><figcaption>Les éducateurs</figcaption></figure>
+          <figure><img src="assets/img/halloween-groupe-3.jpg" alt="Les enfants pour Halloween"><figcaption>Halloween 2026</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ STADE ============ -->
+    <section class="stadium" id="stade">
+      <div class="container stadium-grid">
+        <div>
+          <p class="eyebrow"><span>09</span> Notre antre</p>
+          <h2 class="section-title split-words">Stade <em>Marcel Epinat</em></h2>
+          <p class="stadium-text">C'est ici que résonnent les « Allez l'ASB ! ». Buvette ouverte les jours de match : venez nombreux mettre l'ambiance au bord du terrain.</p>
+          <ul class="stadium-list">
+            <li><span>Adresse</span><b>Stade Marcel Epinat, 03700 Brugheas</b></li>
+            <li><span>Buvette</span><b>Ouverte les jours de match à domicile</b></li>
+          </ul>
+          <a href="https://maps.app.goo.gl/LqFo9qHrF4YvAbAS7" target="_blank" rel="noopener" class="btn btn-gold magnetic"><span>Itinéraire</span></a>
+        </div>
+        <div class="map-wrap reveal-img">
+          <iframe title="Carte du Stade Marcel Epinat à Brugheas" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=Stade+Marcel+Epinat,+03700+Brugheas&z=15&output=embed"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT / FOOTER ============ -->
+    <section class="contact" id="contact">
+      <canvas class="particles" id="footParticles"></canvas>
+      <div class="container">
+        <p class="eyebrow"><span>10</span> Contact</p>
+        <h2 class="contact-title"><span class="shine">ALLEZ</span><br><span class="shine">L'ASB !</span></h2>
+        <div class="contact-cards">
+          <a class="ccard magnetic-soft" href="mailto:asbrugheas@gmail.com">
+            <span>E-mail</span><b>asbrugheas@gmail.com</b><i>↗</i>
+          </a>
+          <a class="ccard magnetic-soft" href="https://www.facebook.com/profile.php?id=61561610493829" target="_blank" rel="noopener">
+            <span>Facebook</span><b>A.S. Brugheas</b><i>↗</i>
+          </a>
+          <a class="ccard magnetic-soft" href="https://www.instagram.com/a.s.brugheas/" target="_blank" rel="noopener">
+            <span>Instagram</span><b>@a.s.brugheas</b><i>↗</i>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="marquee m-foot" data-dir="-1">
+      <div class="marquee-track">
+        <span>A.S. Brugheas</span><img src="assets/img/logo.png" alt=""><span>Plus qu'un club, une famille</span><img src="assets/img/logo.png" alt="">
+        <span>A.S. Brugheas</span><img src="assets/img/logo.png" alt=""><span>Plus qu'un club, une famille</span><img src="assets/img/logo.png" alt="">
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>© <span id="year">2026</span> Association Sportive Brugheas</span>
+      <a href="#top" class="to-top magnetic" aria-label="Retour en haut">↑</a>
+      <span>Stade Marcel Epinat · 03700 Brugheas</span>
+    </div>
+  </footer>
+
+  <!-- ============ LIGHTBOX ============ -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lb-close" aria-label="Fermer">✕</button>
+    <button class="lb-prev" aria-label="Photo précédente">←</button>
+    <figure class="lb-figure"><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure>
+    <button class="lb-next" aria-label="Photo suivante">→</button>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
