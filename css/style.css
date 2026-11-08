@@ -416,6 +416,24 @@ section { position: relative; }
 .footer-bottom { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 20px; padding-bottom: 30px; font-size: 13px; color: var(--muted); flex-wrap: wrap; }
 .to-top { width: 54px; height: 54px; border-radius: 50%; display: grid; place-items: center; background: var(--gold); color: var(--black); font-size: 22px; font-weight: 800; }
 
+/* ---------- Facebook ---------- */
+.fb-nav { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; border: 1.5px solid rgba(227,179,74,.6); color: var(--gold-light); transition: background .4s, color .4s, border-color .4s; flex: 0 0 auto; }
+.fb-nav svg { width: 22px; height: 22px; fill: currentColor; }
+.fb-nav:hover { background: var(--gold); color: var(--black); border-color: var(--gold); }
+@media (max-width: 1080px) { .fb-nav { margin-left: auto; } .burger { margin-left: 4px; } }
+
+.menu-fb { position: relative; display: inline-flex; align-items: center; gap: 12px; margin-top: 34px; padding: 14px 22px 14px 14px; border-radius: 100px; background: var(--gold-grad); color: var(--black); font-weight: 800; font-size: 14px; letter-spacing: .06em; text-transform: uppercase; align-self: flex-start; opacity: 0; transform: translateY(30px); }
+.menu-fb svg { width: 30px; height: 30px; padding: 5px; border-radius: 50%; background: var(--black); fill: var(--gold-light); }
+
+.fb-float { position: fixed; right: 20px; bottom: 20px; z-index: 250; display: flex; align-items: center; height: 60px; border-radius: 100px; background: var(--gold-grad); background-size: 200% 100%; color: var(--black); box-shadow: 0 14px 34px -8px rgba(227,179,74,.55), 0 4px 14px rgba(0,0,0,.5); animation: shimmer 6s linear infinite; }
+.fb-float::before { content: ""; position: absolute; inset: 0; border-radius: inherit; border: 2px solid var(--gold); animation: fbRing 2.4s var(--ease-out) infinite; pointer-events: none; }
+@keyframes fbRing { from { transform: scale(1); opacity: .9; } to { transform: scale(1.45); opacity: 0; } }
+.fb-float-label { max-width: 0; overflow: hidden; white-space: nowrap; font-weight: 800; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; transition: max-width .6s var(--ease), padding .6s var(--ease); }
+.fb-float:hover .fb-float-label, .fb-float.is-open .fb-float-label { max-width: 140px; padding-left: 22px; }
+.fb-float-icon { width: 60px; height: 60px; display: grid; place-items: center; flex: 0 0 auto; }
+.fb-float-icon svg { width: 28px; height: 28px; fill: var(--black); }
+@media (max-width: 700px) { .fb-float { right: 14px; bottom: 14px; height: 54px; } .fb-float-icon { width: 54px; height: 54px; } }
+
 /* ---------- Lightbox ---------- */
 .lightbox { position: fixed; inset: 0; z-index: 600; display: grid; grid-template-columns: 70px 1fr 70px; align-items: center; background: rgba(10,10,10,.94); backdrop-filter: blur(10px); opacity: 0; visibility: hidden; }
 .lb-figure { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 14px; }

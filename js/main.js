@@ -188,7 +188,7 @@ function init() {
   }
   const petals = $$(".petal");
   const counter = { v: 0 };
-  gsap.set(".hero-kicker, .hero-script, .hero-actions > *, .hero-badge, .nav", { autoAlpha: 0 });
+  gsap.set(".hero-kicker, .hero-script, .hero-actions > *, .hero-badge, .nav, #fbFloat", { autoAlpha: 0 });
   gsap.set([...heroSmall, ...heroBig], { yPercent: 110, rotate: 8 });
   gsap.set(".hero-img", { scale: 1.35 });
 
@@ -215,7 +215,14 @@ function init() {
       .fromTo(".hero-script", { autoAlpha: 0, x: -40, rotate: -10 }, { autoAlpha: 1, x: 0, rotate: -3, duration: 1.2 }, .8)
       .fromTo(".hero-actions > *", { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 1, stagger: .12 }, 1)
       .fromTo(".hero-badge", { autoAlpha: 0, scale: .3, rotate: -180 }, { autoAlpha: 1, scale: 1, rotate: 0, duration: 1.6 }, .7)
-      .to(".nav", { autoAlpha: 1, duration: 1 }, 1);
+      .to(".nav", { autoAlpha: 1, duration: 1 }, 1)
+      .fromTo("#fbFloat", { autoAlpha: 0, scale: 0, rotate: -180 }, { autoAlpha: 1, scale: 1, rotate: 0, duration: 1.2, ease: "back.out(1.8)" }, 1.6)
+      .add(() => {
+        // le libellé « Suivez-nous » s'ouvre quelques secondes au chargement
+        const fb = $("#fbFloat");
+        fb.classList.add("is-open");
+        setTimeout(() => fb.classList.remove("is-open"), 3200);
+      }, 2.4);
   }
 
   /* ---------- Curseur ---------- */
@@ -272,6 +279,7 @@ function init() {
   const menuTl = gsap.timeline({ paused: true })
     .to(".menu-bg", { clipPath: "circle(150% at calc(100% - 40px) 38px)", duration: .9, ease: "expo.inOut" })
     .to(".menu-links a", { opacity: 1, y: 0, duration: .7, stagger: .06, ease: "expo.out" }, "-=.4")
+    .to(".menu-fb", { opacity: 1, y: 0, duration: .7, ease: "expo.out" }, "-=.45")
     .to(".menu-foot", { opacity: 1, duration: .5 }, "-=.4");
   burger.addEventListener("click", () => menuOpen ? closeMenu() : openMenu());
   function openMenu() {
