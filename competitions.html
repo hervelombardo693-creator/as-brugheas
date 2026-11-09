@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Résultats &amp; classements — A.S. Brugheas</title>
+  <meta name="description" content="Calendrier, résultats et classements officiels des seniors et des féminines de l'A.S. Brugheas, mis à jour automatiquement depuis la FFF.">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://api-dofa.fff.fr">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Kaushan+Script&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=20261109">
+  <link rel="stylesheet" href="css/competitions.css?v=20261109">
+</head>
+<body class="page-compet">
+
+  <div class="cursor" id="cursor"><span class="cursor-label">Voir</span></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="progress" id="progress"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav is-scrolled" id="nav">
+    <a href="index.html" class="nav-logo" aria-label="Accueil A.S. Brugheas">
+      <img src="assets/img/logo.png" alt="" width="48" height="48">
+      <span>A.S. Brugheas</span>
+    </a>
+    <nav class="nav-links" aria-label="Navigation principale">
+      <a href="index.html#club">Le club</a>
+      <a href="index.html#equipes">Équipes</a>
+      <a href="competitions.html" class="is-active" aria-current="page">Résultats</a>
+      <a href="index.html#ecole">École de foot</a>
+      <a href="index.html#vie">Vie du club</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+    <a href="https://www.facebook.com/profile.php?id=61561610493829" target="_blank" rel="noopener" class="fb-nav magnetic" aria-label="Suivre l'A.S. Brugheas sur Facebook">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.6-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.9v3h2.6V21h3z"/></svg>
+    </a>
+    <a href="index.html#rejoindre" class="btn btn-gold magnetic nav-cta"><span>Nous rejoindre</span></a>
+    <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false"><span></span><span></span></button>
+  </header>
+
+  <div class="menu" id="menu" aria-hidden="true">
+    <div class="menu-bg"></div>
+    <nav class="menu-links">
+      <a href="index.html"><i>00</i>Accueil</a>
+      <a href="index.html#equipes"><i>01</i>Équipes</a>
+      <a href="competitions.html"><i>02</i>Résultats</a>
+      <a href="index.html#ecole"><i>03</i>École de foot</a>
+      <a href="index.html#vie"><i>04</i>Vie du club</a>
+      <a href="index.html#contact"><i>05</i>Contact</a>
+    </nav>
+    <a class="menu-fb" href="https://www.facebook.com/profile.php?id=61561610493829" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.6-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.9v3h2.6V21h3z"/></svg>
+      Suivez-nous sur Facebook
+    </a>
+    <p class="menu-foot">Stade Marcel Epinat · 03700 Brugheas</p>
+  </div>
+
+  <main>
+    <!-- ============ EN-TÊTE ============ -->
+    <section class="c-hero">
+      <div class="c-hero-bg" aria-hidden="true">
+        <img src="assets/img/seniors-equipe.jpg" alt="">
+      </div>
+      <div class="container">
+        <p class="eyebrow"><span>★</span> Saison 2026/2027</p>
+        <h1 class="c-title"><span class="ct-line">Calendrier</span><span class="ct-line gold-text">Résultats</span><span class="ct-line">Classements</span></h1>
+        <p class="c-lead">Tous les matchs des seniors et des féminines : championnat et coupes, scores et classement officiels, mis à jour automatiquement depuis la Fédération Française de Football.</p>
+
+        <div class="team-switch" role="tablist" aria-label="Choisir l'équipe">
+          <span class="ts-indicator" aria-hidden="true"></span>
+          <button role="tab" class="ts-btn is-active" data-team="sem" aria-selected="true">Seniors <small>D5 · Poule D</small></button>
+          <button role="tab" class="ts-btn" data-team="sef" aria-selected="false">Féminines <small>À 8 · Poule 3</small></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ LOGOS DU CHAMPIONNAT ============ -->
+    <div class="marquee logo-marquee" data-dir="-1" aria-hidden="true">
+      <div class="marquee-track" id="logoTrack"></div>
+    </div>
+
+    <!-- ============ ÉTAT ============ -->
+    <div class="container">
+      <div class="c-status" id="cStatus" role="status">
+        <span class="loader"></span> Chargement des données officielles de la FFF…
+      </div>
+    </div>
+
+    <div id="cContent" class="c-content" hidden>
+
+      <!-- Résumé -->
+      <section class="c-block">
+        <div class="container">
+          <div class="summary" id="summary"></div>
+        </div>
+      </section>
+
+      <!-- Prochain match -->
+      <section class="c-block" id="prochain">
+        <div class="container">
+          <p class="eyebrow"><span>01</span> Prochain match</p>
+          <div id="nextMatch"></div>
+        </div>
+      </section>
+
+      <!-- Classement -->
+      <section class="c-block" id="classement">
+        <div class="container">
+          <div class="block-head">
+            <p class="eyebrow"><span>02</span> Classement</p>
+            <h2 class="block-title" id="rankTitle">Classement</h2>
+            <p class="block-sub" id="rankSub"></p>
+          </div>
+          <div class="table-wrap">
+            <table class="rank" id="rankTable">
+              <thead>
+                <tr>
+                  <th class="t-pos" scope="col">#</th>
+                  <th class="t-team" scope="col">Équipe</th>
+                  <th scope="col" title="Points">Pts</th>
+                  <th scope="col" title="Matchs joués">J</th>
+                  <th scope="col" title="Gagnés">G</th>
+                  <th scope="col" title="Nuls">N</th>
+                  <th scope="col" title="Perdus">P</th>
+                  <th class="t-opt" scope="col" title="Buts pour">BP</th>
+                  <th class="t-opt" scope="col" title="Buts contre">BC</th>
+                  <th scope="col" title="Différence de buts">Diff</th>
+                  <th class="t-form" scope="col">Forme</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <p class="legend"><i class="lg w">V</i> Victoire <i class="lg d">N</i> Nul <i class="lg l">D</i> Défaite · Classement provisoire, sous réserve des procédures en cours.</p>
+        </div>
+      </section>
+
+      <!-- Calendrier & résultats ASB -->
+      <section class="c-block" id="calendrier">
+        <div class="container">
+          <div class="block-head">
+            <p class="eyebrow"><span>03</span> Nos matchs</p>
+            <h2 class="block-title">Calendrier &amp; résultats</h2>
+          </div>
+          <div class="filters" role="group" aria-label="Filtrer les matchs">
+            <button class="chip-btn is-active" data-filter="all">Tous</button>
+            <button class="chip-btn" data-filter="done">Résultats</button>
+            <button class="chip-btn" data-filter="todo">À venir</button>
+            <button class="chip-btn" data-filter="cup">Coupes</button>
+          </div>
+          <ol class="match-list" id="matchList"></ol>
+        </div>
+      </section>
+
+      <!-- Journées de la poule -->
+      <section class="c-block" id="journees">
+        <div class="container">
+          <div class="block-head">
+            <p class="eyebrow"><span>04</span> Toute la poule</p>
+            <h2 class="block-title">Journée par journée</h2>
+          </div>
+          <div class="day-nav">
+            <button class="day-arrow magnetic" id="dayPrev" aria-label="Journée précédente">←</button>
+            <div class="day-label"><span>Journée</span><b id="dayNum">1</b><small id="dayDate"></small></div>
+            <button class="day-arrow magnetic" id="dayNext" aria-label="Journée suivante">→</button>
+          </div>
+          <div class="day-dots" id="dayDots"></div>
+          <div class="day-grid" id="dayGrid"></div>
+        </div>
+      </section>
+
+      <div class="container">
+        <p class="source">Source : <a href="#" id="sourceLink" target="_blank" rel="noopener">District de l'Allier de Football — FFF</a> · <span id="updatedAt"></span></p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-bottom">
+      <span>© <span id="year">2026</span> Association Sportive Brugheas</span>
+      <a href="index.html" class="to-top magnetic" aria-label="Retour à l'accueil">⌂</a>
+      <span>Stade Marcel Epinat · 03700 Brugheas</span>
+    </div>
+  </footer>
+
+  <a href="https://www.facebook.com/profile.php?id=61561610493829" target="_blank" rel="noopener" class="fb-float" id="fbFloat" aria-label="Suivre l'A.S. Brugheas sur Facebook">
+    <span class="fb-float-label">Suivez-nous</span>
+    <span class="fb-float-icon">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.6-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.9v3h2.6V21h3z"/></svg>
+    </span>
+  </a>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="js/competitions.js?v=20261109"></script>
+</body>
+</html>

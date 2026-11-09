@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Kaushan+Script&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=20261109">
 </head>
 <body>
 
@@ -46,7 +46,7 @@
     <nav class="nav-links" aria-label="Navigation principale">
       <a href="#club" data-hover>Le club</a>
       <a href="#equipes" data-hover>Équipes</a>
-      <a href="#saison" data-hover>Saison</a>
+      <a href="competitions.html" data-hover>Résultats</a>
       <a href="#ecole" data-hover>École de foot</a>
       <a href="#vie" data-hover>Vie du club</a>
       <a href="#contact" data-hover>Contact</a>
@@ -63,7 +63,7 @@
     <nav class="menu-links">
       <a href="#club"><i>01</i>Le club</a>
       <a href="#equipes"><i>02</i>Équipes</a>
-      <a href="#saison"><i>03</i>Saison</a>
+      <a href="competitions.html"><i>03</i>Résultats &amp; classement</a>
       <a href="#ecole"><i>04</i>École de foot</a>
       <a href="#vie"><i>05</i>Vie du club</a>
       <a href="#contact"><i>06</i>Contact</a>
@@ -139,7 +139,7 @@
         <div class="stats">
           <div class="stat">
             <div class="stat-num"><span class="count" data-to="1">0</span><sup>re</sup></div>
-            <div class="stat-label">place des seniors en D5,<br>seule équipe invaincue après 5 journées</div>
+            <div class="stat-label">place des seniors en D5,<br>seule équipe invaincue après 6 journées</div>
           </div>
           <div class="stat">
             <div class="stat-num"><span class="count" data-to="12">0</span></div>
@@ -205,6 +205,10 @@
         <p class="eyebrow"><span>03</span> Ce week-end</p>
         <h2 class="section-title split-words">Les prochains <em>rendez-vous</em></h2>
         <div class="fixture-list" id="fixtureList"></div>
+        <div class="fixtures-cta">
+          <a href="competitions.html" class="btn btn-gold magnetic"><span>Calendrier, résultats &amp; classements</span></a>
+          <p>Données officielles de la FFF, mises à jour automatiquement.</p>
+        </div>
       </div>
     </section>
 
@@ -249,9 +253,9 @@
     <!-- ============ CARTON BELLERIVE ============ -->
     <section class="score" id="score">
       <div class="container">
-        <p class="eyebrow"><span>05</span> Journée 4 · Carton à Bellerive</p>
+        <p class="eyebrow"><span>05</span> Journée 2 · Carton à Saint-Christophe</p>
         <div class="score-board">
-          <div class="sb-team">Mayotte FC 2</div>
+          <div class="sb-team">Bruyère La ES 2</div>
           <div class="sb-nums">
             <span class="sb-n count" data-to="2">0</span>
             <span class="sb-sep">—</span>
@@ -259,7 +263,7 @@
           </div>
           <div class="sb-team"><b>A.S. Brugheas</b></div>
         </div>
-        <p class="score-sub">Journée 4 · Dimanche 18 octobre · Stade Boucle des Isles, Bellerive-sur-Allier</p>
+        <p class="score-sub">Journée 2 · Dimanche 20 septembre · Stade des Landes, Saint-Christophe</p>
       </div>
       <div class="goal-cards" id="goalCards">
         <figure class="goal-card"><img src="assets/img/but-thomas.jpg" alt="Affiche : quadruplé de Thomas"><figcaption>Thomas · quadruplé</figcaption></figure>
@@ -434,6 +438,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/main.js?v=20261109"></script>
 </body>
 </html>

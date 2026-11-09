@@ -4,42 +4,49 @@
    ========================================================= */
 
 /* ---------------------------------------------------------
-   DONNÉES À METTRE À JOUR CHAQUE SEMAINE
-   - FIXTURES : les matchs du week-end (section « Ce week-end »)
-   - SEASON   : le fil de la saison (cartes horizontales)
-   Dates au format ISO avec fuseau : "2026-11-08T15:00:00+01:00"
+   DONNÉES
+   - « Ce week-end » se met à jour tout seul depuis l'API de la FFF.
+     FIXTURES ne sert que de secours si la FFF ne répond pas.
+   - SEASON : le fil de la saison (cartes horizontales avec affiches).
+   Dates au format ISO avec fuseau : "2026-11-15T15:00:00+01:00"
    --------------------------------------------------------- */
+const FFF_API = "https://api-dofa.fff.fr/api";
+const FFF_CLUB = 204004; // numéro FFF de l'A.S. Brugheas
+const TEAM_COMPS = {
+  Seniors: { main: 452096, all: [452096, 449168, 452108, 460004] },
+  "Féminines": { main: 452107, all: [452107, 458930] }
+};
+const CUP_NAMES = { 449168: "Coupe de France", 452108: "Challenge Jean-Vidal", 460004: "Challenge Paul-Baptiste", 458930: "Challenge Lanoix à 8" };
+
 const FIXTURES = [
   {
-    cat: "Seniors", sub: "Championnat · Journée 6",
-    home: "USTB 2", away: "A.S. Brugheas",
-    date: "2026-11-08T15:00:00+01:00",
-    place: "Stade municipal · 03500 Bransat",
-    // score final : score domicile, score extérieur, texte du badge
-    result: { home: 0, away: 12, label: "Victoire 12-0" }
+    cat: "Seniors", sub: "Championnat · Journée 7",
+    home: "A.S. Brugheas", away: "Magnet Seuillet St G",
+    date: "2026-11-15T15:00:00+01:00",
+    place: "Stade Marcel Épinat · Brugheas"
   },
   {
-    cat: "Féminines", sub: "Championnat · Journée 4",
-    home: "St-Germain-des-Fossés", away: "A.S. Brugheas",
-    date: "2026-11-08T15:00:00+01:00",
-    place: "Stade des Îles 1 · Saint-Germain-des-Fossés"
+    cat: "Féminines", sub: "Championnat · Journée 5",
+    home: "A.S. Brugheas", away: "Lapalisse AAM 2",
+    date: "2026-11-15T10:30:00+01:00",
+    place: "Stade Marcel Épinat · Brugheas"
   }
 ];
 
 const SEASON = [
-  { img: "affiche-coupe-de-france", tag: "Coupe de France", date: "23 août", meta: "AS Brugheas – AS Val de Sioule · 14h30 · Stade Marcel Epinat" },
+  { img: "affiche-coupe-de-france", tag: "Coupe de France", date: "23 août", meta: "AS Brugheas – AS Val de Sioule · 14h30 · Stade Marcel Epinat", result: { type: "loss", text: "Défaite 2-4" } },
   { img: "affiche-ecole-de-foot", tag: "École de foot", date: "5 septembre", meta: "Initiation / découverte pour les petits nés de 2019 à 2022" },
-  { img: "affiche-seniors-j1", tag: "Seniors · J1", date: "6 septembre", meta: "A.S. Brugheas – Chantelle C.S 2 · 15h · Stade Marcel Epinat" },
-  { img: "affiche-challenge-jean-vidal", tag: "Challenge Jean Vidal", date: "13 septembre", meta: "A.S. Brugheas – Sporting Portugal · 15h" },
+  { img: "affiche-seniors-j1", tag: "Seniors · J1", date: "6 septembre", meta: "A.S. Brugheas – Chantelle C.S 2 · 15h · Stade Marcel Epinat", result: { type: "win", text: "Victoire 6-1" } },
+  { img: "affiche-challenge-jean-vidal", tag: "Challenge Jean Vidal", date: "13 septembre", meta: "A.S. Brugheas – Sporting Portugal · 15h", result: { type: "loss", text: "Défaite 1-3" } },
   { img: "affiche-rentree-u7", tag: "École de foot", date: "26 septembre", meta: "La rentrée du foot U7 · premier plateau U6/U7" },
-  { img: "affiche-feminines-j1", tag: "Féminines · J1", date: "27 septembre", meta: "Jaligny – A.S. Brugheas · 11h · Jaligny-sur-Besbre" },
-  { img: "affiche-seniors-j3", tag: "Seniors · J3", date: "4 octobre", meta: "A.S. Brugheas – UASC · 15h · Stade Marcel Epinat" },
-  { img: "affiche-feminines-j3", tag: "Féminines · J3", date: "11 octobre", meta: "A.S. Brugheas – Diou E.S · 10h · Stade Marcel Epinat" },
-  { img: "affiche-challenge-paul-baptiste", tag: "Challenge Paul Baptiste", date: "11 octobre", meta: "Gipcy A.S – A.S. Brugheas · 14h30 · Gipcy" },
-  { img: "affiche-seniors-j4", tag: "Seniors · J4", date: "18 octobre", meta: "Mayotte FC 2 – A.S. Brugheas · Bellerive-sur-Allier", result: { type: "win", text: "Victoire 8-2" } },
-  { img: "affiche-seniors-j5", tag: "Seniors · J5", date: "25 octobre", meta: "A.S. Brugheas – Abrest U.S 2 · 15h · Stade Marcel Epinat", result: { type: "draw", text: "Match nul" } },
+  { img: "affiche-feminines-j1", tag: "Féminines · J1", date: "27 septembre", meta: "Jaligny – A.S. Brugheas · 11h · Jaligny-sur-Besbre", result: { type: "loss", text: "Défaite 0-2" } },
+  { img: "affiche-seniors-j3", tag: "Seniors · J3", date: "4 octobre", meta: "A.S. Brugheas – UASC · 15h · Stade Marcel Epinat", result: { type: "win", text: "Victoire 4-0" } },
+  { img: "affiche-feminines-j3", tag: "Féminines · J3", date: "11 octobre", meta: "A.S. Brugheas – Diou E.S · 10h · Stade Marcel Epinat", result: { type: "win", text: "Victoire 5-0" } },
+  { img: "affiche-challenge-paul-baptiste", tag: "Challenge Paul Baptiste", date: "11 octobre", meta: "Gipcy A.S – A.S. Brugheas · 14h30 · Gipcy", result: { type: "win", text: "Victoire 6-2" } },
+  { img: "affiche-seniors-j4", tag: "Seniors · J4", date: "18 octobre", meta: "Mayotte FC 2 – A.S. Brugheas · Bellerive-sur-Allier", result: { type: "win", text: "Victoire 5-1" } },
+  { img: "affiche-seniors-j5", tag: "Seniors · J5", date: "25 octobre", meta: "A.S. Brugheas – Abrest U.S 2 · 15h · Stade Marcel Epinat", result: { type: "draw", text: "Nul 2-2" } },
   { img: "affiche-seniors-j6", tag: "Seniors · J6", date: "8 novembre", meta: "USTB 2 – A.S. Brugheas · 15h · Bransat", result: { type: "win", text: "Victoire 12-0" } },
-  { img: "affiche-feminines-j4", tag: "Féminines · J4", date: "8 novembre", meta: "St-Germain-des-Fossés – A.S. Brugheas · 15h", result: { type: "next", text: "Ce week-end" } }
+  { img: "affiche-feminines-j4", tag: "Féminines · J4", date: "8 novembre", meta: "St-Germain-des-Fossés – A.S. Brugheas · 15h", result: { type: "loss", text: "Défaite 2-3" } }
 ];
 
 /* --------------------------------------------------------- */
@@ -65,25 +72,71 @@ function buildSeason() {
 }
 
 const FR_DATE = new Intl.DateTimeFormat("fr-FR", { weekday: "long", day: "numeric", month: "long", hour: "2-digit", minute: "2-digit", timeZone: "Europe/Paris" });
-function buildFixtures() {
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+function buildFixtures(fixtures = FIXTURES) {
   const list = $("#fixtureList");
-  list.innerHTML = FIXTURES.map((f, i) => {
+  const isAsb = n => /brugheas/i.test(n);
+  const lg = (src, asb) => (src || asb) ? `<span class="fx-logo ${asb ? "is-asb" : ""}"><img src="${esc(asb ? "assets/img/logo.png" : src)}" alt="" loading="lazy" onerror="this.parentNode.remove()"></span>` : "";
+  list.innerHTML = fixtures.map((f, i) => {
     const d = new Date(f.date);
     const label = FR_DATE.format(d).replace(":", "h");
-    const isAsb = n => /brugheas/i.test(n);
+    let status = `<div class="fx-live" data-date="${f.date}"></div>`;
+    if (f.result) {
+      const asbHome = isAsb(f.home);
+      const a = asbHome ? f.result.home : f.result.away, b = asbHome ? f.result.away : f.result.home;
+      const type = a > b ? "win" : a < b ? "loss" : "draw";
+      const txt = f.result.label || `${{ win: "Victoire", loss: "Défaite", draw: "Nul" }[type]} ${a}-${b}`;
+      status = `<div><span class="fx-status ${type}">${esc(txt)}</span></div>`;
+    }
     return `
     <div class="fixture" data-i="${i}">
-      <div class="fx-cat">${f.cat}<small>${f.sub}</small></div>
-      <div class="fx-team home ${isAsb(f.home) ? "asb" : ""}">${f.home}</div>
+      <div class="fx-cat">${esc(f.cat)}<small>${esc(f.sub)}</small></div>
+      <div class="fx-team home ${isAsb(f.home) ? "asb" : ""}"><span>${esc(f.home)}</span>${lg(f.homeLogo, isAsb(f.home))}</div>
       ${f.result ? `<div class="fx-vs fx-final">${f.result.home}<i>-</i>${f.result.away}</div>` : `<div class="fx-vs">VS</div>`}
-      <div class="fx-team ${isAsb(f.away) ? "asb" : ""}">${f.away}</div>
-      <div class="fx-info"><b>${label.charAt(0).toUpperCase() + label.slice(1)}</b>${f.place}${f.result
-        ? `<div><span class="fx-status win">${f.result.label}</span></div>`
-        : `<div class="fx-live" data-date="${f.date}"></div>`}</div>
+      <div class="fx-team ${isAsb(f.away) ? "asb" : ""}">${lg(f.awayLogo, isAsb(f.away))}<span>${esc(f.away)}</span></div>
+      <div class="fx-info"><b>${esc(label.charAt(0).toUpperCase() + label.slice(1))}</b>${esc(f.place)}${status}</div>
     </div>`;
   }).join("");
   tickFixtures();
-  setInterval(tickFixtures, 1000);
+}
+setInterval(() => tickFixtures(), 1000);
+
+/* ---------- « Ce week-end » en direct depuis la FFF ---------- */
+async function liveFixtures() {
+  let all = [];
+  for (let page = 1; page < 6; page++) {
+    const r = await fetch(`${FFF_API}/clubs/${FFF_CLUB}/matchs?page=${page}`);
+    if (!r.ok) throw new Error(r.status);
+    const d = await r.json();
+    const m = d["hydra:member"] || [];
+    all = all.concat(m);
+    if (!m.length || all.length >= (d["hydra:totalItems"] ?? 0)) break;
+  }
+  const when = m => {
+    const [hh, mm] = (m.time || "15H00").toUpperCase().split("H");
+    return new Date(`${m.date.slice(0, 10)}T${hh.padStart(2, "0")}:${(mm || "00").padStart(2, "0")}:00`);
+  };
+  const played = m => m.home_score != null && m.away_score != null;
+  const name = t => t ? (t.short_name.trim() + (t.code > 1 ? " " + t.code : "")) : "Exempt";
+  const now = Date.now();
+  const out = [];
+  for (const [cat, c] of Object.entries(TEAM_COMPS)) {
+    const mine = all.filter(m => c.all.includes(m.competition?.cp_no)).sort((a, b) => when(a) - when(b));
+    // prochain match à venir, sinon le dernier joué
+    const m = mine.find(x => !played(x) && when(x).getTime() > now - 3 * 36e5) || mine.filter(played).pop();
+    if (!m) continue;
+    const cup = m.competition?.cp_no !== c.main;
+    out.push({
+      cat,
+      sub: cup ? (CUP_NAMES[m.competition?.cp_no] || m.competition?.name) : `Championnat · Journée ${m.poule_journee?.number ?? ""}`,
+      home: name(m.home), away: name(m.away),
+      homeLogo: m.home?.club?.logo, awayLogo: m.away?.club?.logo,
+      date: when(m).toISOString(),
+      place: m.terrain ? `${m.terrain.name} · ${m.terrain.city}`.replace(/\s+/g, " ") : "Lieu à confirmer",
+      result: played(m) ? { home: m.home_score, away: m.away_score } : null
+    });
+  }
+  return out;
 }
 function tickFixtures() {
   const now = Date.now();
@@ -98,7 +151,7 @@ function tickFixtures() {
     } else if (diff > -2 * 36e5) {
       html = `<span class="fx-status live">En cours</span>`;
     } else {
-      html = `<span class="fx-status">Terminé · score sur nos réseaux</span>`;
+      html = `<span class="fx-status">Terminé · score bientôt en ligne</span>`;
     }
     if (el.innerHTML !== html) el.innerHTML = html;
   });
@@ -107,6 +160,11 @@ function tickFixtures() {
 buildSeason();
 buildFixtures();
 $("#year").textContent = new Date().getFullYear();
+liveFixtures().then(list => {
+  if (!list.length) return;
+  buildFixtures(list);
+  if (window.gsap) gsap.from(".fixture", { y: 40, opacity: 0, duration: 1, stagger: .12, ease: "expo.out" });
+}).catch(() => { /* la FFF ne répond pas : on garde FIXTURES */ });
 
 /* ---------- Sans GSAP : on affiche tout simplement ---------- */
 if (!window.gsap || !window.ScrollTrigger) {
